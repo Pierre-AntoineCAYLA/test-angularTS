@@ -29,7 +29,7 @@ var certifications = new Array<Certification>(java, bac)
 var spring = new Connaissance("spring", 15);
 var anglais = new Connaissance("anglais", 1)
 
-var connaissances = new Array<Connaissance>(spring, anglais);
+var connaissances = new Array<Connaissance>(anglais,spring);
 
 var coca = new Boisson("coca", Alcool.non, Bio.non);
 var biere = new Boisson("biere", Alcool.oui, Bio.oui);
@@ -85,8 +85,33 @@ describe('personne', () => {
   it('should be femme', () => {
     expect(sophie._genre).to.equal("femme");
   });
-  it('should be math francais', () => {
-    expect(romain.).to.equal("Catholicism");
+  it('should be anglais', () => {
+    expect(romain.connaissance).to.include(anglais);
+  });
+  it('should be spring', () => {
+    expect(romain.enseigner(romain.connaissance)).to.include(spring);
+  });
+  it('should be not angalais', () => {
+    expect(romain.enseigner(romain.connaissance)).to.not.include(anglais);
+  });
+  it('should be java', () => {
+    expect(franck.certification).to.include(java);
+  });
+});
+
+
+describe('formations', () => {
+  it('shoulde dta123', () => {
+    expect(dta123._nom).to.equal("dta123")
+  });
+  it('should be 12/01/2015', () => {
+    expect(dta123._dateDebut.getTime()).to.equal(new Date("12/01/2015").getTime());
+  });
+  it('should be franck', () => {
+    expect(dta123._stagiaires).to.include(franck);
+  });
+  it('should be romain', () => {
+    expect(dta123._formateurs).to.include(romain);
   });
   
 });

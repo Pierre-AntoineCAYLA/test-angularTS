@@ -10,4 +10,7 @@ export class Stagiaire extends Personne{
         super(nom,prenom,genre, boisson, religion)
         this._certification=certification;
     }
+
+    set certification (certification){this._certification=certification}
+    get certification(){return this._certification}
 }

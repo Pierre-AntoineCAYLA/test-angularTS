@@ -11,6 +11,9 @@ export class Formateur extends Personne{
         this._connaissance=connaissance;
     }
 
+    set connaissance (connaissance){this._connaissance=connaissance}
+    get connaissance (){return this._connaissance}
+
     public enseigner(_connaissance:Array<Connaissance>){
         let connaissanceConfirme:Array<Connaissance> = new Array<Connaissance>();
         _connaissance.forEach(connaissance => {
