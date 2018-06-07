@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { Boisson, Alcool, Bio } from "../Boisson";
 import { Certification } from "../Certification";
 import { Connaissance } from "../Connaissance";
-import { Film, GenreFilm, Trailer } from '../film';
-import { Personne, Genre, Religion } from '../personne';
+import { Film, GenreFilm, Trailer } from '../Film';
+import { Personne, Genre, Religion } from '../Personne';
 import { Formation } from '../Formation';
 import { Stagiaire } from '../Stagiaire';
 import { Formateur } from '../Formateur';
@@ -22,7 +22,7 @@ var acteurs = new Array<string>("gerard", "jean", "mathilde");
 var film = new Film("12 Rounds 3: Lockdown", date, "Lionsgate", "image.png", "/trailer/", "a", GenreFilm.action_and_adventure, "Stephen Reynolds", acteurs, trailers)
 
 var java = new Certification("java", 2018);
-var bac = new Certification("bac", 2018);
+var bac = new Certification("bac", 2012);
 
 var certifications = new Array<Certification>(java, bac)
 
@@ -48,69 +48,69 @@ var formateurs = new Array<Formateur>(romain, thomas);
 var dta123 = new Formation("dta123", date, date2, stagiaires, formateurs);
 
 describe('film', () => {
-  it('shoulde be 12 Rounds 3: Lockdown', () => {
+  it('the title of movie shoulde be 12 Rounds 3: Lockdown', () => {
     expect(film._titre).to.equal("12 Rounds 3: Lockdown")
   });
-  it('should be 2', () => {
+  it('the number of trailers should be 2', () => {
     expect(film._trailer.length).to.equal(2);
   });
 });
 
 describe('boisson', () => {
-  it('shoulde be coca', () => {
+  it('the drink of franck shoulde be coca', () => {
     expect(franck._boisson._nom).to.equal("coca")
   });
-  it('should be oui sophie', () => {
+  it('the drink should be bio for sophie', () => {
     expect(sophie._boisson._bio).to.equal("oui");
   });
-  it('should be oui thomas', () => {
+  it('the drink should be bio for thomas', () => {
     expect(thomas._boisson._bio).to.equal("oui");
   });
-  it('should be non franck', () => {
+  it('the drink should be non alcool for franck', () => {
     expect(franck._boisson._alcool).to.equal("non");
   });
-  it('should be "la boisson coca contient-il de l alcool ? non est elle bio ? non', () => {
+  it('the boir function should return "la boisson coca contient-il de l alcool ? non est elle bio ? non', () => {
     expect(franck.boire(franck._boisson)).to.equal("la boisson coca contient-il de l'alcool ? non est elle bio ? non");
   });
-  it('should be "franck duil"', () => {
+  it('the toString function should return "franck duil"', () => {
     expect(franck.toString()).to.equal("franck duil");
   });
 });
 
 
 describe('personne', () => {
-  it('shoulde guillon', () => {
+  it('the name of thoams shoulde be guillon', () => {
     expect(thomas._nom).to.equal("guillon")
   });
-  it('should be femme', () => {
+  it('the genre of sphie should be femme', () => {
     expect(sophie._genre).to.equal("femme");
   });
-  it('should be anglais', () => {
+  it('connaissances of romain should contain anglais', () => {
     expect(romain.connaissance).to.include(anglais);
   });
-  it('should be spring', () => {
+  it('the enseignements of romain should contain spring', () => {
     expect(romain.enseigner(romain.connaissance)).to.include(spring);
   });
-  it('should be not angalais', () => {
+  it('the enseignement of romain doesn t should contain anglais', () => {
     expect(romain.enseigner(romain.connaissance)).to.not.include(anglais);
   });
-  it('should be java', () => {
+  it('the certification of franck should contain java', () => {
     expect(franck.certification).to.include(java);
   });
 });
 
 
 describe('formations', () => {
-  it('shoulde dta123', () => {
+  it('the name of formation shoulde be dta123', () => {
     expect(dta123._nom).to.equal("dta123")
   });
-  it('should be 12/01/2015', () => {
+  it('the date of beginning of formation should be 12/01/2015', () => {
     expect(dta123._dateDebut.getTime()).to.equal(new Date("12/01/2015").getTime());
   });
-  it('should be franck', () => {
+  it('the students of formation should contain franck', () => {
     expect(dta123._stagiaires).to.include(franck);
   });
-  it('should be romain', () => {
+  it('the teachers of formation should contain romain', () => {
     expect(dta123._formateurs).to.include(romain);
   });
   
